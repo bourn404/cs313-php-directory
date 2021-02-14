@@ -7,6 +7,7 @@
 <body>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partials/header.php'; ?>
   <h1 class="page-title">Contact Details</h1>
+  <p class="text-center"><a class="btn" href="/contact/edit/<?php echo $contact['id'];?>"><i class="fas fa-pencil"></i> Edit</a> <a class="btn" href="/contact/delete/<?php echo $contact['id'];?>"><i class="fas fa-trash"></i> Delete</a></p>
   <div class="content-wrapper">
     <h2><?php echo "$contact[first_name] $contact[last_name]"; ?></h2>
     <table class="entry-details-table">

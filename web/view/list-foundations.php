@@ -12,6 +12,7 @@
       <input type="search" name="search" id="search" placeholder="Search by name, city, or state." value="<?php echo $search_query; ?>">
       <input type="submit" class="btn" value="Go" />
     </form>
+    <p class="text-center"><a class="btn" href="/foundation/add">+ Add a Foundation</a></p>
     <ul>
       <?php foreach($foundations as $org): ?>
         <li>

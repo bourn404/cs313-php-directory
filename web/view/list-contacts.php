@@ -12,6 +12,7 @@
       <input type="search" name="search" id="search" placeholder="Search by name or organization." value="<?php echo $search_query; ?>">
       <input type="submit" class="btn" value="Go" />
     </form>
+    <p class="text-center"><a class="btn" href="/contact/add">+ Add a Contact</a></p>
     <ul>
       <?php foreach($contacts as $person):
         

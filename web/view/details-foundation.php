@@ -8,6 +8,8 @@
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/view/partials/header.php'; ?>
   <h1 class="page-title">Foundation Details</h1>
   <div class="content-wrapper">
+    <p class="text-center"><a class="btn" href="/foundation/edit/<?php echo $foundation['id'];?>"><i class="fas fa-pencil"></i> Edit</a> <a class="btn" href="/foundation/delete/<?php echo $foundation['id'];?>"><i class="fas fa-trash"></i> Delete</a></p>
+
     <h2><?php echo $foundation['org_name']; ?></h2>
     <p>
       <?php echo "$foundation[address1]</br>$foundation[city], $foundation[state] $foundation[zip]"; ?>

@@ -112,6 +112,10 @@ p {
   font-weight: bold;
 }
 
+.text-center {
+  text-align: center;
+}
+
 /*
 ** FORM STYLES
 */
@@ -128,9 +132,25 @@ p {
   margin-right: 0.5em;
 }
 
-input {
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input, select {
   border-radius: 5px;
   border: 1px solid gray;
   padding: 0.4em 1em;
+}
+
+.btn {
+  border: 1px solid #888888;
+  border-radius: 5px;
+  background-color: #dddddd;
+  text-decoration: none;
+  color: #000000;
+  padding: 0.3em 0.8em;
+  display: inline-block;
+  margin: 0.5em;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -53,3 +53,73 @@ function get_foundation_contacts($org_id) {
 
     return $results;
 }
+
+function save_contact($contact) {
+    $connection= connectDB();
+
+
+
+    if((int)$contact['id']) {
+        // save changes
+        $sql = 'UPDATE contacts SET first_name = :first_name,last_name = :last_name,organization_id = :organization_id,is_primary_contact = :is_primary_contact,title = :title,email=:email,phone=:phone,notes=:notes WHERE id = :id';
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(':id', (int)$contact['id'], PDO::PARAM_INT);
+        $stmt->bindValue(':first_name', $contact['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $contact['last_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':organization_id', $contact['organization_id'], PDO::PARAM_INT);
+        $stmt->bindValue('is_primary_contact', $contact['is_primary_contact'], PDO::PARAM_STR);
+        $stmt->bindValue(':title', $contact['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $contact['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $contact['phone'], PDO::PARAM_STR);
+        $stmt->bindValue(':notes', $contact['notes'], PDO::PARAM_STR);
+
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($result) {
+            return $contact['id'];
+        } else {
+            return false;
+        }
+
+    } else {
+        // create new
+        $sql = 'INSERT INTO contacts (first_name,last_name,organization_id,is_primary_contact,title,email,phone,notes) VALUES (:first_name,:last_name,:organization_id,:is_primary_contact,:title,:email,:phone,:notes)';
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(':first_name', $contact['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $contact['last_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':organization_id', $contact['organization_id'], PDO::PARAM_INT);
+        $stmt->bindValue('is_primary_contact', $contact['is_primary_contact'], PDO::PARAM_STR);
+        $stmt->bindValue(':title', $contact['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $contact['email'], PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $contact['phone'], PDO::PARAM_STR);
+        $stmt->bindValue(':notes', $contact['notes'], PDO::PARAM_STR);
+
+
+        $result = $stmt->execute();
+        $stmt->closeCursor();
+
+        if($result) {
+            $contact_id = $connection->lastInsertId("contacts_id_seq");
+            return $contact_id;
+        } else {
+            return false;
+        }
+
+
+    }
+}
+
+function delete_contact($contact_id) {
+    $connection= connectDB();
+
+    $sql = 'DELETE from contacts WHERE id = :id';
+    
+    $stmt = $connection->prepare($sql);
+    $stmt->bindValue(':id', $contact_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $stmt->closeCursor();
+
+}

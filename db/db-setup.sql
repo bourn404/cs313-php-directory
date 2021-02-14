@@ -35,8 +35,8 @@ insert into program_types (label) values
 
 drop table if exists programs;
 create table programs (id serial not null primary key
-,program_type_id int not null references program_types(id)
-,organization_id int not null references organizations(id)
+,program_type_id int not null references program_types(id) ON DELETE CASCADE
+,organization_id int not null references organizations(id) ON DELETE CASCADE
 ,program_name varchar(255) not null
 ,program_frequency varchar(25)
 ,next_date date
@@ -73,7 +73,7 @@ insert into programs (program_type_id, organization_id, program_name, program_fr
 
 drop table if exists contacts;
 create table contacts (id serial not null primary key
-,organization_id int not null references organizations(id)
+,organization_id int not null references organizations(id) ON DELETE CASCADE
 ,is_primary_contact boolean
 ,first_name varchar(50) not null
 ,last_name varchar(50) not null
